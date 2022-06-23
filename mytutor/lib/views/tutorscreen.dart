@@ -5,7 +5,6 @@ import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import '../constant.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../models/tutor.dart';
-import 'package:favorite_button/favorite_button.dart';
 
 class TutorScreen extends StatefulWidget {
   const TutorScreen({Key? key}) : super(key: key);
@@ -19,7 +18,6 @@ class _TutorScreenState extends State<TutorScreen> {
   String titlecenter = "";
   late double screenHeight, screenWidth, resWidth;
   var numofpage, curpage = 1;
-  //int numofitem = 0;
   var color;
   int cart = 0;
   TextEditingController searchController = TextEditingController();
@@ -42,10 +40,8 @@ class _TutorScreenState extends State<TutorScreen> {
     screenWidth = MediaQuery.of(context).size.width;
     if (screenWidth <= 600) {
       resWidth = screenWidth;
-      //rowcount = 2;
     } else {
       resWidth = screenWidth * 0.75;
-      //rowcount = 3;
     }
     return Scaffold(
       appBar: AppBar(
@@ -72,21 +68,17 @@ class _TutorScreenState extends State<TutorScreen> {
               ),
             )
           : LiquidPullToRefresh(
-                  onRefresh: _refresh,
-                  color: Colors.teal,
-                  backgroundColor: const Color.fromARGB(255, 246, 254, 255),
-                  animSpeedFactor: 2,
-                  springAnimationDurationInMilliseconds: 1000,
-                  showChildOpacityTransition: true,
-            child: Padding(
+              onRefresh: _refresh,
+              color: Colors.teal,
+              backgroundColor: const Color.fromARGB(255, 246, 254, 255),
+              animSpeedFactor: 2,
+              springAnimationDurationInMilliseconds: 1000,
+              showChildOpacityTransition: true,
+              child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(children: [
                   Expanded(
                       child: ListView(
-                          // mainAxisSpacing: 15,
-                          // crossAxisSpacing: 15,
-                          // crossAxisCount: 2,
-                          // childAspectRatio: (1 / 1),
                           children: List.generate(tutorList.length, (index) {
                     return InkWell(
                       splashColor: const Color.fromARGB(255, 156, 219, 213),
@@ -106,7 +98,8 @@ class _TutorScreenState extends State<TutorScreen> {
                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         CachedNetworkImage(
                                           imageUrl: CONSTANTS.server +
@@ -144,7 +137,8 @@ class _TutorScreenState extends State<TutorScreen> {
                                                     .toString(),
                                                 style: const TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight: FontWeight.w900),
+                                                    fontWeight:
+                                                        FontWeight.w900),
                                                 textAlign: TextAlign.center,
                                               ),
                                               const SizedBox(height: 5),
@@ -163,16 +157,7 @@ class _TutorScreenState extends State<TutorScreen> {
                                           padding: const EdgeInsets.all(8.0),
                                           child: Align(
                                               alignment: const Alignment(1, -1),
-                                              child:
-                                                  // FavoriteButton(
-                                                  //   iconSize: 10,
-                                                  //   isFavorite: false,
-                                                  //   valueChanged: (_isFavorite){
-                                                  //     //_addFavorite(index);
-                                                  //     print('favorite: $_isFavorite');
-                                                  //   }
-                                                  //   ),
-                                                  IconButton(
+                                              child: IconButton(
                                                 icon: const Icon(
                                                     Icons.favorite_rounded,
                                                     color: Colors.red),
@@ -216,7 +201,7 @@ class _TutorScreenState extends State<TutorScreen> {
                   ),
                 ]),
               ),
-          ),
+            ),
     );
   }
 
@@ -271,20 +256,20 @@ class _TutorScreenState extends State<TutorScreen> {
                 floating: false,
                 expandedHeight: 200.0,
                 flexibleSpace: FlexibleSpaceBar(
-                  title:
-                      const Text('Tutor Details',
-                          style: TextStyle(color: Colors.white)),
+                  title: const Text('Tutor Details',
+                      style: TextStyle(color: Colors.white)),
                   centerTitle: true,
                   background: Stack(
-                    children: 
-                      [ Positioned(
-                        top:0,
+                    children: [
+                      Positioned(
+                        top: 0,
                         child: SizedBox(
-                                  height: screenHeight / 2.5,
-                                  width: screenWidth,
-                                  child:
-                                      Image.asset('assets/images/tutorbackground.png')),),
-                        Positioned(
+                            height: screenHeight / 2.5,
+                            width: screenWidth,
+                            child: Image.asset(
+                                'assets/images/tutorbackground.png')),
+                      ),
+                      Positioned(
                         bottom: 0,
                         left: 10,
                         child: CachedNetworkImage(
@@ -338,35 +323,42 @@ class _TutorScreenState extends State<TutorScreen> {
                                   const TextSpan(
                                       text: "Tutor Description: \n",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w900,fontSize: 16)),
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 16)),
                                   TextSpan(
-                                      text: tutorList[index]
-                                          .tutorDesc
-                                          .toString(), style: const TextStyle(fontSize: 16)),
+                                      text:
+                                          tutorList[index].tutorDesc.toString(),
+                                      style: const TextStyle(fontSize: 16)),
                                   const TextSpan(
                                       text: "\n\nEmail: ",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w900, fontSize: 16)),
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 16)),
                                   TextSpan(
                                       text: tutorList[index]
                                           .tutorEmail
-                                          .toString(), style: const TextStyle(fontSize: 16)),
+                                          .toString(),
+                                      style: const TextStyle(fontSize: 16)),
                                   const TextSpan(
                                       text: "\n\nPhone Number: ",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w900, fontSize: 16)),
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 16)),
                                   TextSpan(
                                       text: tutorList[index]
                                           .tutorPhone
-                                          .toString(), style: const TextStyle(fontSize: 16)),
+                                          .toString(),
+                                      style: const TextStyle(fontSize: 16)),
                                   const TextSpan(
                                       text: "\n\nSubject Responsible: \n",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w900, fontSize: 16)),
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 16)),
                                   TextSpan(
                                       text: tutorList[index]
                                           .subjectName
-                                          .toString(), style: const TextStyle(fontSize: 16)),
+                                          .toString(),
+                                      style: const TextStyle(fontSize: 16)),
                                 ],
                               ),
                             ),
@@ -378,66 +370,6 @@ class _TutorScreenState extends State<TutorScreen> {
             ],
           );
         });
-    // showDialog(
-    //     context: context,
-    //     builder: (BuildContext context) {
-    //       return AlertDialog(
-    //         shape: const RoundedRectangleBorder(
-    //             borderRadius: BorderRadius.all(Radius.circular(20.0))),
-    //         title: const Text(
-    //           "Tutor Details",
-    //           style: TextStyle(),
-    //         ),
-    //         content: SingleChildScrollView(
-    //             child: Column(
-    //           children: [
-    //             CachedNetworkImage(
-    //               imageUrl: CONSTANTS.server +
-    //                   "/mytutor/mobile/assets/tutors/" +
-    //                   tutorList[index].tutorId.toString() +
-    //                   '.jpg',
-    //               fit: BoxFit.cover,
-    //               width: resWidth,
-    //               placeholder: (context, url) =>
-    //                   const LinearProgressIndicator(),
-    //               errorWidget: (context, url, error) => const Icon(Icons.error),
-    //             ),
-    //             Text(
-    //               tutorList[index].tutorName.toString(),
-    //               style: const TextStyle(
-    //                   fontSize: 20, fontWeight: FontWeight.bold),
-    //               textAlign: TextAlign.center,
-    //             ),
-    //             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-    //               RichText(
-    //                 textAlign: TextAlign.justify,
-    //                 text: TextSpan(
-    //                   style: DefaultTextStyle.of(context).style,
-    //                   children: [
-    //                     const TextSpan(
-    //                         text: "\nTutor Description: \n",
-    //                         style: TextStyle(fontWeight: FontWeight.w900)),
-    //                     TextSpan(text: tutorList[index].tutorDesc.toString()),
-    //                     const TextSpan(
-    //                         text: "\n\nEmail: ",
-    //                         style: TextStyle(fontWeight: FontWeight.w900)),
-    //                     TextSpan(text: tutorList[index].tutorEmail.toString()),
-    //                     const TextSpan(
-    //                         text: "\n\nPhone Number: ",
-    //                         style: TextStyle(fontWeight: FontWeight.w900)),
-    //                     TextSpan(text: tutorList[index].tutorPhone.toString()),
-    //                     const TextSpan(
-    //                         text: "\n\nSubject Responsible: \n",
-    //                         style: TextStyle(fontWeight: FontWeight.w900)),
-    //                     TextSpan(text: tutorList[index].subjectName.toString()),
-    //                   ],
-    //                 ),
-    //               ),
-    //             ]),
-    //           ],
-    //         )),
-    //       );
-    //     });
   }
 
   void _loadSearchDialog() {
@@ -452,20 +384,17 @@ class _TutorScreenState extends State<TutorScreen> {
                 title: const Text(
                   "Search",
                 ),
-                content: SizedBox(
-                  //height: screenHeight / 4,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(
-                        controller: searchController,
-                        decoration: InputDecoration(
-                            labelText: 'Search by tutor or subject name',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                      ),
-                    ],
-                  ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: searchController,
+                      decoration: InputDecoration(
+                          labelText: 'Search by tutor or subject name',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                    ),
+                  ],
                 ),
                 actions: [
                   ElevatedButton(

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import '../constant.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:favorite_button/favorite_button.dart';
 
 import '../models/subject.dart';
 
@@ -44,10 +43,8 @@ class _SubjectScreenState extends State<SubjectScreen> {
 
     if (screenWidth <= 600) {
       resWidth = screenWidth;
-      //rowcount = 2;
     } else {
       resWidth = screenWidth * 0.75;
-      //rowcount = 3;
     }
     return Scaffold(
       appBar: AppBar(
@@ -74,24 +71,16 @@ class _SubjectScreenState extends State<SubjectScreen> {
               ),
             )
           : LiquidPullToRefresh(
-                  onRefresh: _refresh,
-                  color: Colors.teal,
-                  backgroundColor: const Color.fromARGB(255, 246, 254, 255),
-                  animSpeedFactor: 2,
-                  springAnimationDurationInMilliseconds: 1000,
-                  showChildOpacityTransition: true,
-            
-            child: Padding(
+              onRefresh: _refresh,
+              color: Colors.teal,
+              backgroundColor: const Color.fromARGB(255, 246, 254, 255),
+              animSpeedFactor: 2,
+              springAnimationDurationInMilliseconds: 1000,
+              showChildOpacityTransition: true,
+              child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(children: [
                   Expanded(
-                    //   child: LiquidPullToRefresh(
-                    // onRefresh: _refresh,
-                    // color: const Color.fromARGB(255, 246, 254, 255),
-                    // backgroundColor: Colors.teal,
-                    // animSpeedFactor: 2,
-                    // springAnimationDurationInMilliseconds: 1000,
-                    // showChildOpacityTransition: true,
                     child: GridView.count(
                         mainAxisSpacing: 10,
                         crossAxisSpacing: 10,
@@ -99,7 +88,8 @@ class _SubjectScreenState extends State<SubjectScreen> {
                         childAspectRatio: (1 / 1),
                         children: List.generate(subjectList.length, (index) {
                           return InkWell(
-                            splashColor: const Color.fromARGB(255, 156, 219, 213),
+                            splashColor:
+                                const Color.fromARGB(255, 156, 219, 213),
                             onTap: () => {_loadSubjectDetails(index)},
                             child: Card(
                                 elevation: 5,
@@ -130,7 +120,8 @@ class _SubjectScreenState extends State<SubjectScreen> {
                                                   borderRadius:
                                                       const BorderRadius.only(
                                                           topLeft:
-                                                              Radius.circular(20),
+                                                              Radius.circular(
+                                                                  20),
                                                           topRight:
                                                               Radius.circular(
                                                                   20)),
@@ -176,16 +167,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
                                           Positioned(
                                             bottom: -3,
                                             right: -2,
-                                            child:
-                                                // FavoriteButton(
-                                                //   iconSize: -10,
-                                                //   isFavorite: false,
-                                                //   valueChanged: (_isFavorite){
-                                                //     _addFavorite(index);
-                                                //     print('favorite: $_isFavorite');
-                                                //   }
-                                                //   ),
-                                                IconButton(
+                                            child: IconButton(
                                               icon: const Icon(
                                                   Icons.favorite_rounded,
                                                   color: Colors.red),
@@ -227,7 +209,8 @@ class _SubjectScreenState extends State<SubjectScreen> {
                                                         style: const TextStyle(
                                                             fontSize: 10,
                                                             fontWeight:
-                                                                FontWeight.w500)),
+                                                                FontWeight
+                                                                    .w500)),
                                                     Text(
                                                         subjectList[index]
                                                                 .subjectSessions
@@ -236,21 +219,24 @@ class _SubjectScreenState extends State<SubjectScreen> {
                                                         style: const TextStyle(
                                                             fontSize: 10,
                                                             fontWeight:
-                                                                FontWeight.w500)),
+                                                                FontWeight
+                                                                    .w500)),
                                                     RatingBarIndicator(
                                                       rating: double.parse(
                                                           subjectList[index]
                                                               .subjectRating
                                                               .toString()),
-                                                      direction: Axis.horizontal,
+                                                      direction:
+                                                          Axis.horizontal,
                                                       itemCount: 5,
                                                       itemSize: 15,
                                                       itemPadding:
                                                           const EdgeInsets
                                                                   .symmetric(
                                                               horizontal: 4.0),
-                                                      itemBuilder: (context, _) =>
-                                                          const Icon(
+                                                      itemBuilder:
+                                                          (context, _) =>
+                                                              const Icon(
                                                         Icons.star_rounded,
                                                         color: Colors.amber,
                                                         size: 2,
@@ -266,7 +252,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
                                 )),
                           );
                         })),
-                  //)
+                    //)
                   ),
                   SizedBox(
                     height: 35,
@@ -283,7 +269,8 @@ class _SubjectScreenState extends State<SubjectScreen> {
                         return SizedBox(
                           width: 40,
                           child: TextButton(
-                              onPressed: () => {_loadSubjects(index + 1, "", "")},
+                              onPressed: () =>
+                                  {_loadSubjects(index + 1, "", "")},
                               child: Text(
                                 (index + 1).toString(),
                                 style: TextStyle(color: color),
@@ -294,7 +281,7 @@ class _SubjectScreenState extends State<SubjectScreen> {
                   ),
                 ]),
               ),
-          ),
+            ),
     );
   }
 
@@ -346,16 +333,6 @@ class _SubjectScreenState extends State<SubjectScreen> {
           return CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
-                // iconTheme: const IconThemeData(
-                //   color: Colors.black,
-                //   shadows: <Shadow>[
-                //     Shadow(
-                //       offset: Offset(0, 0),
-                //       blurRadius: 5.0,
-                //       color: Color.fromARGB(255, 255, 255, 255),
-                //     ),
-                //   ], //change your color here
-                // ),
                 pinned: true,
                 floating: false,
                 expandedHeight: 200.0,
@@ -515,63 +492,60 @@ class _SubjectScreenState extends State<SubjectScreen> {
                 title: const Text(
                   "Search ",
                 ),
-                content: SizedBox(
-                  //height: screenHeight / 4,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TextField(
-                        controller: searchController,
-                        decoration: InputDecoration(
-                            labelText: 'Search by subject name',
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5.0))),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Text("Price: ", style: TextStyle(fontSize: 15)),
-                          SizedBox(
-                            height: 30,
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    arrangement = "ASC";
-                                  });
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: const Color.fromARGB(
-                                      255, 220, 243, 241), // background
-                                  onPrimary: Colors.grey[700], // foreground
-                                ),
-                                child: const Text("ASC",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold))),
-                          ),
-                          SizedBox(
-                            height: 30,
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    arrangement = "DESC";
-                                  });
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  primary: const Color.fromARGB(
-                                      255, 220, 243, 241), // background
-                                  onPrimary: Colors.grey[700], // foreground
-                                ),
-                                child: const Text("DESC",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold))),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: searchController,
+                      decoration: InputDecoration(
+                          labelText: 'Search by subject name',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0))),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Text("Price: ", style: TextStyle(fontSize: 15)),
+                        SizedBox(
+                          height: 30,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  arrangement = "ASC";
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: const Color.fromARGB(
+                                    255, 220, 243, 241), // background
+                                onPrimary: Colors.grey[700], // foreground
+                              ),
+                              child: const Text("ASC",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold))),
+                        ),
+                        SizedBox(
+                          height: 30,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  arrangement = "DESC";
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: const Color.fromARGB(
+                                    255, 220, 243, 241), // background
+                                onPrimary: Colors.grey[700], // foreground
+                              ),
+                              child: const Text("DESC",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold))),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
                 actions: [
                   ElevatedButton(
@@ -589,6 +563,4 @@ class _SubjectScreenState extends State<SubjectScreen> {
           );
         });
   }
-
-  void _addFavorite(int index) {}
 }

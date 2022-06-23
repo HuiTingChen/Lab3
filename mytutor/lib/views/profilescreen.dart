@@ -28,9 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ctrwidth = screenWidth;
     }
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Material App Bar'),
-      // ),
       body: Center(
           child: ListView(
         children: [
